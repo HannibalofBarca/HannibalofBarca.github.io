@@ -14,10 +14,10 @@ permalink: /projects/
 </div> -->
 
 <div style="margin-bottom: 40px; clear: both; overflow: hidden;">
-  <img src="{{ site.baseurl }}/images/unitree-go2.jpg" alt="Unitree Go2 Locomotion" style="width: 300px; height: 225px; object-fit: cover; border-radius: 8px; float: left; margin-right: 20px; margin-bottom: 10px; border: 1px solid #eaeaea;" />
+  <img src="{{ site.baseurl }}/images/RL_gait.mp4" alt="Unitree Go2 Locomotion" style="width: 250px; height: 250px; object-fit: cover; border-radius: 8px; float: left; margin-right: 20px; margin-bottom: 10px; border: 1px solid #eaeaea;" />
   
   <h3 style="margin-top: 0; display: flex; align-items: center;">
-    Unitree Go2 Locomotion via PPO
+    Unitree Go2 Reinforcement Learning Policy for Locomotion
     <a href="https://github.com/HannibalofBarca/rob6323_go2_project" target="_blank" title="View on GitHub" style="margin-left: 10px; display: inline-flex; transition: opacity 0.2s;">
       <img src="{{ site.baseurl }}/images/GitHub_Invertocat_Black.svg" alt="GitHub Logo" style="width: 24px; height: 24px; border: none; box-shadow: none;" />
     </a>
