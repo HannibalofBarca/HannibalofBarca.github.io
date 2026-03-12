@@ -9,6 +9,7 @@ permalink: /projects/
 <div style="margin-bottom: 40px; clear: both; overflow: hidden;">
   
   <img src="{{ site.baseurl }}/images/[IMAGE_FILENAME.jpg]" alt="[IMAGE_ALT_TEXT]" style="width: 200px; height: 150px; object-fit: cover; border-radius: 8px; float: left; margin-right: 20px; margin-bottom: 10px; border: 1px solid #eaeaea;" />
+  <video src="{{ site.baseurl }}/images/[IMAGE_FILENAME.jpg]" [IMAGE_ALT_TEXT] autoplay loop muted playsinline style="width: 250px; height: 250px; object-fit: cover; border-radius: 8px; float: left; margin-right: 20px; margin-bottom: 10px; border: 1px solid #eaeaea;"></video>
   
   <h3 style="margin-top: 0; display: flex; align-items: center;">
     [PROJECT_TITLE]
@@ -23,7 +24,7 @@ permalink: /projects/
 
 <div style="margin-bottom: 40px; clear: both; overflow: hidden;">
 
-  <img src="{{ site.baseurl }}/images/RL_gait.mp4" alt="Unitree Go2 Locomotion" style="width: 250px; height: 250px; object-fit: cover; border-radius: 8px; float: left; margin-right: 20px; margin-bottom: 10px; border: 1px solid #eaeaea;" />
+  <video src="{{ site.baseurl }}/images/RL_gait.mp4" alt="Unitree Go2 Locomotion" autoplay loop muted playsinline style="width: 250px; height: 250px; object-fit: cover; border-radius: 8px; float: left; margin-right: 20px; margin-bottom: 10px; border: 1px solid #eaeaea;"></video>
   
   <h3 style="margin-top: 0; display: flex; align-items: center;">
     Unitree Go2 Reinforcement Learning Policy for Locomotion
@@ -39,7 +40,7 @@ permalink: /projects/
 
 <div style="margin-bottom: 40px; clear: both; overflow: hidden;">
   
-  <img src="{{ site.baseurl }}/images/quadrotor.mp4" alt="quadrotor flip" style="width: 250px; height: 250px; object-fit: cover; border-radius: 8px; float: left; margin-right: 20px; margin-bottom: 10px; border: 1px solid #eaeaea;" />
+  <video src="{{ site.baseurl }}/images/quadrotor.mp4" alt="Quadrotor Flip" autoplay loop muted playsinline style="width: 250px; height: 250px; object-fit: cover; border-radius: 8px; float: left; margin-right: 20px; margin-bottom: 10px; border: 1px solid #eaeaea;"></video>
   
   <h3 style="margin-top: 0; display: flex; align-items: center;">
     2D Quadrotor MPC Controller
@@ -51,4 +52,6 @@ permalink: /projects/
   <p>SQP and MPC-based trajectory following controller for a 2D quadrotor. The controller was designed to execute a full loop maneuver. A simpler linear state position controller has also been <a href="https://github.com/HannibalofBarca/2D-Quadrotor-Linear-State-Feedback-Controller"> implemented</a></p>
   
 </div>
+
+<hr style="border: 0; border-top: 1px solid #eaeaea; margin: 30px 0;">
 
