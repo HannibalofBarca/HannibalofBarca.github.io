@@ -129,7 +129,7 @@ permalink: /projects/
 <hr style="border: 0; border-top: 1px solid #eaeaea; margin: 30px 0;">
 
 <div style="margin-bottom: 40px; clear: both; overflow: hidden;">
-  <video src="{{ site.baseurl }}/images/hexapod.mp4" alt="Hexapod Robot" autoplay loop muted playsinline style="width: 250px; height: 250px; object-fit: cover; border-radius: 8px; float: left; margin-right: 20px; margin-bottom: 10px; border: 1px solid #eaeaea;"></video>
+  <video src="{{ site.baseurl }}/images/hexapod.mp4" alt="Hexapod Robot" autoplay loop muted playsinline style="width: 250px; height: 250px; object-fit: cover; object-position: 0% 50%; border-radius: 8px; float: left; margin-right: 20px; margin-bottom: 10px; border: 1px solid #eaeaea;"></video>
   
   <h3 style="margin-top: 0; display: flex; align-items: center;">
     Hexapod Robot Design and Control
