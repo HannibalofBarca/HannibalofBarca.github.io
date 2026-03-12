@@ -8,7 +8,7 @@ permalink: /projects/
 
 <div style="margin-bottom: 40px; clear: both; overflow: hidden;">
   
-  <img src="{{ site.baseurl }}/images/[IMAGE_FILENAME.jpg]" alt="[IMAGE_ALT_TEXT]" style="width: 200px; height: 150px; object-fit: cover; border-radius: 8px; float: left; margin-right: 20px; margin-bottom: 10px; border: 1px solid #eaeaea;" />
+  <img src="{{ site.baseurl }}/images/[IMAGE_FILENAME.jpg]" alt="[IMAGE_ALT_TEXT]" style="width: 250px; height: 250px; object-fit: cover; border-radius: 8px; float: left; margin-right: 20px; margin-bottom: 10px; border: 1px solid #eaeaea;" />
   <video src="{{ site.baseurl }}/images/[IMAGE_FILENAME.jpg]" [IMAGE_ALT_TEXT] autoplay loop muted playsinline style="width: 250px; height: 250px; object-fit: cover; border-radius: 8px; float: left; margin-right: 20px; margin-bottom: 10px; border: 1px solid #eaeaea;"></video>
   
   <h3 style="margin-top: 0; display: flex; align-items: center;">
@@ -56,7 +56,7 @@ permalink: /projects/
 <hr style="border: 0; border-top: 1px solid #eaeaea; margin: 30px 0;">
 
 <div style="margin-bottom: 40px; clear: both; overflow: hidden;">
-  <img src="{{ site.baseurl }}/images/vpr_retrieval.png" alt="VPR Image Retrieval" style="width: 200px; height: 150px; object-fit: cover; border-radius: 8px; float: left; margin-right: 20px; margin-bottom: 10px; border: 1px solid #eaeaea;" />
+  <img src="{{ site.baseurl }}/images/vpr_retrieval.png" alt="VPR Image Retrieval" style="width: 250px; height: 250px; object-fit: cover; border-radius: 8px; float: left; margin-right: 20px; margin-bottom: 10px; border: 1px solid #eaeaea;" />
   
   <h3 style="margin-top: 0; display: flex; align-items: center;">
     Content-Based Image Retrieval for VPR
@@ -86,7 +86,7 @@ permalink: /projects/
 <hr style="border: 0; border-top: 1px solid #eaeaea; margin: 30px 0;">
 
 <div style="margin-bottom: 40px; clear: both; overflow: hidden;">
-  <img src="{{ site.baseurl }}/images/ICP.png" alt="ICP_Kitti" style="width: 200px; height: 150px; object-fit: cover; border-radius: 8px; float: left; margin-right: 20px; margin-bottom: 10px; border: 1px solid #eaeaea;" />
+  <img src="{{ site.baseurl }}/images/ICP.png" alt="ICP_Kitti" style="width: 250px; height: 250px; object-fit: cover; border-radius: 8px; float: left; margin-right: 20px; margin-bottom: 10px; border: 1px solid #eaeaea;" />
   
   <h3 style="margin-top: 0; display: flex; align-items: center;">
     ICP Point Cloud Registration
@@ -114,7 +114,7 @@ permalink: /projects/
 </div>
 
 <div style="margin-bottom: 40px; clear: both; overflow: hidden;">
-  <img src="{{ site.baseurl }}/images/april_tag.png" alt="April Tag" style="width: 200px; height: 150px; object-fit: cover; border-radius: 8px; float: left; margin-right: 20px; margin-bottom: 10px; border: 1px solid #eaeaea;" />
+  <img src="{{ site.baseurl }}/images/april_tag.png" alt="April Tag" style="width: 250px; height: 250px; object-fit: cover; border-radius: 8px; float: left; margin-right: 20px; margin-bottom: 10px; border: 1px solid #eaeaea;" />
   
   <h3 style="margin-top: 0; display: flex; align-items: center;">
     Camera Calibration and AprilTag AR
