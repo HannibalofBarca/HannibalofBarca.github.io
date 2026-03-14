@@ -4,57 +4,75 @@ layout: default
 
 <div style="border: 1px solid #eaeaea; border-radius: 12px; padding: 20px; margin-bottom: 40px; overflow: hidden;">
   
-  <img src="{{ site.baseurl }}/images/biopic.jpg" alt="Profile Picture" style="width: 120px; height: 120px; border-radius: 16px; float: left; margin-right: 20px; margin-bottom: 10px;" />
+  <img src="{{ site.baseurl }}/images/biopic.jpg" alt="Profile Picture" style="width: 120px; height: 120px; object-fit: cover; border-radius: 16px; float: left; margin-right: 20px; margin-bottom: 10px;" />
   
   <h2 style="margin-top: 0;">About Me</h2>
-  <p style="margin-bottom: 0;">
-    
+  <p style="margin-bottom: 0; line-height: 1.6;">
+    I am a robotics engineer specializing in <strong>control theory, reinforcement learning, and computer vision</strong>. My work focuses on developing robust control architectures and autonomous navigation systems for complex dynamic robots, ranging from quadrotors to quadrupedal dogs and active suspension systems.
+    <br><br>
+    <a href="mailto:your.email@example.com" style="margin-right: 15px; text-decoration: none; color: #0366d6; font-weight: bold;">✉️ Email Me</a>
+    <a href="https://linkedin.com/in/yourprofile" target="_blank" style="margin-right: 15px; text-decoration: none; color: #0366d6; font-weight: bold;">🔗 LinkedIn</a>
   </p>
 
 </div>
 
-<div class="posts">
-  {% for post in paginator.posts %}
-    <article class="post">
-      <a href="{{ site.baseurl }}{{ post.url }}">
-        <h1>{{ post.title }}</h1>
-
-        <div>
-          <p class="post_date">{{ post.date | date: "%B %e, %Y" }}</p>
-        </div>
-      </a>
-      <div class="entry">
-        {{ post.excerpt }}
-      </div>
-
-      <a href="{{ site.baseurl }}{{ post.url }}" class="read-more">Read More</a>
-    </article>
-  {% endfor %}
-
-  <!-- pagination -->
-  {% if paginator.total_pages > 1 %}
-  <div class="pagination">
-    {% if paginator.previous_page %}
-      <a href="{{ paginator.previous_page_path | prepend: site.baseurl | replace: '//', '/' }}">&laquo; Prev</a>
-    {% else %}
-      <span>&laquo; Prev</span>
-    {% endif %}
-
-    {% for page in (1..paginator.total_pages) %}
-      {% if page == paginator.page %}
-        <span class="webjeda">{{ page }}</span>
-      {% elsif page == 1 %}
-        <a href="{{ '/' | prepend: site.baseurl | replace: '//', '/' }}">{{ page }}</a>
-      {% else %}
-        <a href="{{ site.paginate_path | prepend: site.baseurl | replace: '//', '/' | replace: ':num', page }}">{{ page }}</a>
-      {% endif %}
-    {% endfor %}
-
-    {% if paginator.next_page %}
-      <a href="{{ paginator.next_page_path | prepend: site.baseurl | replace: '//', '/' }}">Next &raquo;</a>
-    {% else %}
-      <span>Next &raquo;</span>
-    {% endif %}
+<div style="text-align: center; margin: 40px 0; padding: 30px 20px; background-color: #f8f9fa; border-radius: 12px; border: 1px solid #eaeaea;">
+  <h3 style="margin-top: 0; margin-bottom: 20px; font-size: 1.4em;">Check out my work</h3>
+  
+  <div style="display: flex; justify-content: center; gap: 20px; flex-wrap: wrap;">
+    <a href="https://github.com/HannibalofBarca" target="_blank" style="background-color: #24292e; color: #ffffff; padding: 12px 24px; border-radius: 8px; text-decoration: none; font-weight: bold; display: inline-flex; align-items: center; transition: opacity 0.2s;">
+      <span style="margin-right: 8px; font-size: 1.2em;">💻</span> GitHub
+    </a>
+    
+    <a href="{{ site.baseurl }}/papers/" style="background-color: #0366d6; color: #ffffff; padding: 12px 24px; border-radius: 8px; text-decoration: none; font-weight: bold; display: inline-flex; align-items: center; transition: opacity 0.2s;">
+      <span style="margin-right: 8px; font-size: 1.2em;">📄</span> Publications
+    </a>
   </div>
-  {% endif %}
+</div>
+
+<h2 style="border-bottom: 1px solid #eaeaea; padding-bottom: 10px; margin-bottom: 30px;">Featured Projects</h2>
+
+<div style="margin-bottom: 40px; clear: both; overflow: hidden;">
+  <video src="{{ site.baseurl }}/images/RL_gait.mp4" autoplay loop muted playsinline style="width: 250px; height: 250px; object-fit: cover; object-position: 20% 50%; border-radius: 8px; float: left; margin-right: 20px; margin-bottom: 10px; border: 1px solid #eaeaea;"></video>
+  
+  <h3 style="margin-top: 0; display: flex; align-items: center;">
+    Unitree Go2 RL Policy for Locomotion
+    <a href="https://github.com/HannibalofBarca/rob6323_go2_project" target="_blank" title="View on GitHub" style="margin-left: 10px; display: inline-flex; transition: opacity 0.2s;">
+      <img src="{{ site.baseurl }}/images/GitHub_Invertocat_Black.svg" alt="GitHub Logo" style="width: 24px; height: 24px; border: none; box-shadow: none;" />
+    </a>
+  </h3>
+  
+  <p>A PPO-based RL controller for a Unitree Go2 robot dog in NVIDIA Isaac Sim that has custom rewards and the Raibert heuristic implemented for a stable, natural walking gait, and an actuator friction model implemented for increased simulation accuracy. The model was trained for plane, stepped, and rough terrains.</p>
+</div>
+
+<div style="margin-bottom: 40px; clear: both; overflow: hidden;">
+  <video src="{{ site.baseurl }}/images/quadrotor.mp4" autoplay loop muted playsinline style="width: 250px; height: 250px; object-fit: cover; border-radius: 8px; float: left; margin-right: 20px; margin-bottom: 10px; border: 1px solid #eaeaea;"></video>
+  
+  <h3 style="margin-top: 0; display: flex; align-items: center;">
+    2D Quadrotor MPC Controller
+    <a href="https://github.com/HannibalofBarca/2D-Quadrotor-MPC" target="_blank" title="View on GitHub" style="margin-left: 10px; display: inline-flex; transition: opacity 0.2s;">
+      <img src="{{ site.baseurl }}/images/GitHub_Invertocat_Black.svg" alt="GitHub Logo" style="width: 24px; height: 24px; border: none; box-shadow: none;" />
+    </a>
+  </h3>
+  
+  <p>An SQP and MPC-based trajectory following controller for a 2D quadrotor that has a custom SQP solver implemented for nonlinear trajectory optimization, and a nonlinear MPC framework implemented for stability and disturbance rejection. The controller was designed to execute a full loop maneuver.</p>
+</div>
+
+<div style="margin-bottom: 40px; clear: both; overflow: hidden;">
+  <video src="{{ site.baseurl }}/images/vpr_retrieval.mp4" autoplay loop muted playsinline style="width: 250px; height: 250px; object-fit: cover; border-radius: 8px; float: left; margin-right: 20px; margin-bottom: 10px; border: 1px solid #eaeaea;"></video>
+  
+  <h3 style="margin-top: 0; display: flex; align-items: center;">
+    Content-Based Image Retrieval for VPR
+    <a href="https://github.com/HannibalofBarca/Visual-Place-Recognition-Image-Retrieval" target="_blank" title="View on GitHub" style="margin-left: 10px; display: inline-flex; transition: opacity 0.2s;">
+      <img src="{{ site.baseurl }}/images/GitHub_Invertocat_Black.svg" alt="GitHub Logo" style="width: 24px; height: 24px; border: none; box-shadow: none;" />
+    </a>
+  </h3>
+  
+  <p>A Content-Based Image Retrieval system for Visual Place Recognition that has a ResNet-18 model implemented for generating semantic image embeddings, and a KD-Tree spatial indexing structure implemented for efficient nearest-neighbor lookups. The system was evaluated using the NYU-VPR dataset.</p>
+</div>
+
+<div style="text-align: right; margin-top: 20px; margin-bottom: 50px;">
+  <a href="{{ site.baseurl }}/projects/" style="font-size: 1.1em; font-weight: bold; text-decoration: none; color: #0366d6;">
+    View All Projects &rarr;
+  </a>
 </div>
