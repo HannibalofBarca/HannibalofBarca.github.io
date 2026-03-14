@@ -16,7 +16,7 @@ permalink: /papers/
   </h3>
   
   <p style="font-style: italic; color: #586069; margin-top: -10px; margin-bottom: 15px;">
-    Archit Sharma, Pravin M. Singru — Accepted at the 30th International Congress on Sound and Vibration (ICSV30) (not presented)
+    Archit Sharma, Pravin M. Singru — Published in the 30th International Congress on Sound and Vibration (ICSV30)
   </p>
   
   <p>An adaptive neural network-based controller for a vehicle active suspension system that has a adaptive neural network algorithm implemented for approximation of damper dynamics. The controller was evaluated for improvements in maximum overshoot and settling time across diverse road profiles compared to passive and LQR control methods.</p>
