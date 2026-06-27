@@ -101,6 +101,22 @@ permalink: /projects/
 <hr style="border: 0; border-top: 1px solid #eaeaea; margin: 30px 0;">
 
 <div style="margin-bottom: 40px; clear: both; overflow: hidden;">
+
+  <video src="{{ site.baseurl }}/images/MPPI_manip.mp4" alt="MPPI Controller" autoplay loop muted playsinline style="width: 250px; height: 250px; object-fit: cover; border-radius: 8px; float: left; margin-right: 20px; margin-bottom: 10px; border: 1px solid #eaeaea;"></video>
+  
+  <h3 style="margin-top: 0; display: flex; align-items: center;">
+    MPPI Controller for Planar Manipulator
+    <a href="https://github.com/HannibalofBarca/3R-Manipulator-MPPI" target="_blank" title="View on GitHub" style="margin-left: 10px; display: inline-flex; transition: opacity 0.2s;">
+      <img src="{{ site.baseurl }}/images/GitHub_Invertocat_Black.svg" alt="GitHub Logo" style="width: 24px; height: 24px; border: none; box-shadow: none;" />
+    </a>
+  </h3>
+  
+  <p>An MPPI-based predictive controller for a 3-degree-of-freedom manipulator in a custom simulator that has a Monte-Carlo sampling approach implemented for approximating optimal joint velocities, and a single-shooting optimization method implemented for goal reaching without explicit access to the robot's dynamics. The algorithm was evaluated across multiple target positions to analyze performance consistency and cost variance.</p>
+</div>
+
+<hr style="border: 0; border-top: 1px solid #eaeaea; margin: 30px 0;">
+
+<div style="margin-bottom: 40px; clear: both; overflow: hidden;">
   <video src="{{ site.baseurl }}/images/inverted_pendulum.mp4" alt="Inverted Pendulum Q-Learning" autoplay loop muted playsinline style="width: 250px; height: 250px; object-fit: cover; border-radius: 8px; float: left; margin-right: 20px; margin-bottom: 10px; border: 1px solid #eaeaea;"></video>
   
   <h3 style="margin-top: 0; display: flex; align-items: center;">
