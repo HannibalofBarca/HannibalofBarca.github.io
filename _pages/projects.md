@@ -113,6 +113,8 @@ permalink: /projects/
   <p>A Q-learning-based reinforcement learning controller for the inverted pendulum problem.</p>
 </div>
 
+<hr style="border: 0; border-top: 1px solid #eaeaea; margin: 30px 0;">
+
 <div style="margin-bottom: 40px; clear: both; overflow: hidden;">
   <img src="{{ site.baseurl }}/images/april_tag.png" alt="April Tag" style="width: 250px; height: 250px; object-fit: cover; border-radius: 8px; float: left; margin-right: 20px; margin-bottom: 10px; border: 1px solid #eaeaea;" />
   
