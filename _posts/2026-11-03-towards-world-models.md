@@ -345,7 +345,7 @@ categories: [Ongoing]
 <text x="540" y="241.6" font-size="12" fill="#222">Dreamer, actions</text>
 <text x="540" y="277.9" font-size="12" fill="#222">Flow-JEPA, actions</text>
 </svg></figure>
-<p>Error grows roughly linearly with step, as expected, though the linear trend is optimistic. Longer training horizons cost some earlier-step accuracy.</p>
+<p>Error grows roughly linearly with step - expected, but the linear trend is optimistic. Longer training horizons cost some earlier-step accuracy.</p>
 
 <p><strong>B. History</strong> (action-conditioned, horizon 5)</p>
 <table style="display: block; overflow-x: auto;">
@@ -443,7 +443,7 @@ categories: [Ongoing]
   <tr><td>RoPE over time</td><td>0.009</td><td><strong>0.057</strong></td><td><strong>4.2</strong></td></tr>
   <tr><td>None (NoPE)</td><td>0.010</td><td>0.062</td><td>4.4</td></tr>
 </table>
-<p>RoPE performs better than NoPE (no positional embedding), as expected.</p>
+<p>RoPE performs better than NoPE (no positional embedding) - expected.</p>
 
 <h3>2. Environment: OCBench</h3>
 
@@ -453,7 +453,7 @@ categories: [Ongoing]
 
 <p>The LeWM encoder is Push-T-specific, so OCBench needs a general image encoder.</p>
 <ul>
-  <li><strong>Pooled DINOv2 failed.</strong> Pooling frozen DINOv2-S patch tokens to a 4×4 grid (also used on the real robot) lost too much detail, as expected.</li>
+  <li><strong>Pooled DINOv2 failed.</strong> Pooling frozen DINOv2-S patch tokens to a 4×4 grid (also used on the real robot) lost too much detail - expected.</li>
   <li><strong>Current: frozen DINOv3 ViT-S, full patch grid</strong>, front camera, plus 7-d end-effector state (position, yaw, gripper opening, contact).</li>
   <li><strong>No custom encoder.</strong> Literature suggests custom-trained encoders match the performance of pretrained ones (and may beat them in certain scenarios), but they are out of scope for this project.</li>
 </ul>
