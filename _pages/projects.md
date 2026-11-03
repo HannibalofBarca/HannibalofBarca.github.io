@@ -31,7 +31,7 @@ permalink: /projects/
     <span style="margin-left: 10px; font-size: 13px; font-weight: normal; color: #fff; background: #4CAF50; border-radius: 50px; padding: 2px 10px;">Ongoing</span>
   </h3>
 
-  <p>Experimenting with recipes for distributional latent world models, comparing a Flow-JEPA style flow-matching predictor with a Dreamer 4 style transformer. Ablations on Push-T, then OCBench and real robot data with frozen DINOv3 encoders. <a href="{{ site.baseurl }}{% post_url 2026-11-03-towards-world-models %}">Read the log</a></p>
+  <p>Distributional latent world models: a Flow-JEPA style flow-matching predictor vs a Dreamer 4 style transformer. Ablations on Push-T, OCBench, and real robot data with frozen DINOv3 encoders. <a href="{{ site.baseurl }}{% post_url 2026-11-03-towards-world-models %}">Read the log</a></p>
 </div>
 
 <hr style="border: 0; border-top: 1px solid #eaeaea; margin: 30px 0;">

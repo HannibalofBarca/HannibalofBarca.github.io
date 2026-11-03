@@ -4,9 +4,9 @@ title: Towards World Models
 categories: [Ongoing]
 ---
 
-<p>For an upcoming project I needed a learned world model that predicts a <em>distribution</em> over futures rather than one best guess. The literature led me to two recent designs, <a href="https://arxiv.org/abs/2509.24527" target="_blank">Dreamer 4</a> and <a href="https://arxiv.org/abs/2608.29029" target="_blank">Flow-JEPA</a>, and this page tracks what I find as I build and compare them.</p>
+<p>This is the first stepping stone in a foray into <em>distributional RL</em>. The details of the architecture are still fluid, but I know I will need a distributional learned model of any environment I choose to work with going forward. The two recent designs I would like to work with are <a href="https://arxiv.org/abs/2509.24527" target="_blank">Dreamer 4</a> and <a href="https://arxiv.org/abs/2608.29029" target="_blank">Flow-JEPA</a>.</p>
 
-<p><em>This is me experimenting with recipes. It is not formal academic work and is not meant to be published, so expect rough edges and conclusions that change as the runs come in.</em></p>
+<p><em>Experiment log, not formal academic work. Conclusions may change as it evolves.</em></p>
 
 <h2>Two Architectures</h2>
 
@@ -14,24 +14,24 @@ categories: [Ongoing]
 <h3>Flow-JEPA style</h3>
 <figure style="margin: 10px 0 30px;">
 <img src="{{ site.baseurl }}/images/wm/fjepa_overview.svg" alt="Flow-JEPA overview: (a) training pipeline, (b) predictor architecture" style="width: 100%; height: auto;" />
-<figcaption style="font-size: 15px; color: #666; margin-top: 6px;">Figure 3 from Huo, Song &amp; Luo, <a href="https://arxiv.org/abs/2608.29029" target="_blank"><em>Flow-JEPA: Robust Latent Dynamics for JEPA World Models via Flow Matching</em></a> (2026), CC BY 4.0. I keep the encoder frozen, so only the predictor in (b) is trained.</figcaption>
+<figcaption style="font-size: 15px; color: #666; margin-top: 6px;">Figure 3 from Huo, Song &amp; Luo, <a href="https://arxiv.org/abs/2608.29029" target="_blank"><em>Flow-JEPA: Robust Latent Dynamics for JEPA World Models via Flow Matching</em></a> (2026), CC BY 4.0.</figcaption>
 </figure>
 
 <h3>Dreamer style</h3>
 <figure style="margin: 10px 0 30px;">
 <img src="{{ site.baseurl }}/images/wm/dreamer4_dynamics.png" alt="Dreamer 4 block-causal dynamics transformer" style="width: 100%; max-width: 424px; height: auto; display: block; margin: 0 auto;" />
-<figcaption style="font-size: 15px; color: #666; margin-top: 6px;">Figure 2b from Hafner, Yan &amp; Lillicrap, <a href="https://arxiv.org/abs/2509.24527" target="_blank"><em>Training Agents Inside of Scalable World Models</em></a> (Dreamer 4, 2025). My version swaps Dreamer 4's tokenizer for a frozen pretrained encoder and lets the future chunk attend bidirectionally.</figcaption>
+<figcaption style="font-size: 15px; color: #666; margin-top: 6px;">Figure 2b from Hafner, Yan &amp; Lillicrap, <a href="https://arxiv.org/abs/2509.24527" target="_blank"><em>Training Agents Inside of Scalable World Models</em></a> (Dreamer 4, 2025).</figcaption>
 </figure>
 
 <h2>Experiments</h2>
 
 <h3>1. Environment: Push-T</h3>
 
-<p>I needed a simple, fast environment to prototype the predictors before anything harder. Push-T fits: a point pusher moves a T-shaped block in 2D, there is a large expert dataset (18,685 episodes), and Flow-JEPA publishes Push-T numbers to compare against. Every model here predicts in the latent space of the frozen LeWM encoder (one 192-d vector per frame), and one predicted step is 5 frames.</p>
+<p>I am using Push-T as (1) a quick prototyping environment where I can judge small changes to the architecture and training recipe, and (2) a test bed to compare against published numbers, as a sanity check that my implementations are accurate. 1 predicted step = 5 frames.</p>
 
-<h4>Starting point: reproducing Flow-JEPA planning</h4>
+<h4>Reproducing Flow-JEPA planning</h4>
 
-<p>I first retrained Flow-JEPA and ran its CEM planner: reach a goal frame 25 steps ahead within 50 steps, over 50 episodes per seed. "Noisy" adds a Gaussian noise patch (radius 10) to the current and goal images.</p>
+<p>Retrained Flow-JEPA with its CEM (cross-entropy method) planner: reach a goal frame 25 steps ahead within 50 steps, 50 episodes per seed. "Noisy" adds stochasticity to the environment.</p>
 
 <table style="display: block; overflow-x: auto;">
   <tr><th>Model</th><th>CEM iterations</th><th>Clean success (%)</th><th>Noisy success (%)</th></tr>
@@ -41,7 +41,6 @@ categories: [Ongoing]
   <tr><td>LeWM, released weights</td><td>30</td><td>88.0</td><td>56.7</td></tr>
   <tr><td>Paper: Flow-JEPA / LeWM</td><td></td><td>96 / 96</td><td>90 / 58</td></tr>
 </table>
-<p style="font-size: 15px; color: #666;">Mean of 3 seeds × 50 episodes. Clean planning roughly reproduces. The noise protocol reproduces too (LeWM 56.7 vs the paper's 58), but Flow-JEPA's robustness gain does not: in my runs it is about 11 points <em>worse</em> than LeWM under noise, where the paper reports 32 points better.</p>
 <figure style="margin: 14px 0 20px;">
 <svg viewBox="0 0 680 280" role="img" aria-label="Planning success (%)" style="width:100%;height:auto;display:block" font-family="Helvetica, Arial, sans-serif">
 <rect width="680" height="280" fill="#fff"/>
@@ -87,25 +86,24 @@ categories: [Ongoing]
 <div style="display: flex; flex-wrap: wrap; gap: 16px; margin: 10px 0 6px;">
   <figure style="flex: 1 1 300px; margin: 0;">
     <video src="{{ site.baseurl }}/images/wm/pusht_plan_clean.mp4" autoplay loop muted playsinline style="width: 100%; height: auto;"></video>
-    <figcaption style="font-size: 14px; color: #666;">Clean: the planner reaches the goal.</figcaption>
+    
   </figure>
   <figure style="flex: 1 1 300px; margin: 0;">
     <video src="{{ site.baseurl }}/images/wm/pusht_plan_noisy.mp4" autoplay loop muted playsinline style="width: 100%; height: auto;"></video>
-    <figcaption style="font-size: 14px; color: #666;">Same start with the noise patch (top left): it fails.</figcaption>
+    
   </figure>
 </div>
-<p style="font-size: 15px; color: #666;">Panels: the planning agent, the dataset trajectory, and the goal.</p>
 
 <figure style="margin: 20px 0 30px;">
   <img src="{{ site.baseurl }}/images/wm/pusht_predictions.jpg" alt="Flow-JEPA Push-T predictions decoded to pixels" style="width: 100%; height: auto;" />
-  <figcaption style="font-size: 15px; color: #666;">Flow-JEPA predictions decoded to pixels with a separately trained decoder, out to 25 frames. Rows: ground truth, the decoder on real latents, one sample and 8 blended samples for the dataset actions, the 4 lowest-cost CEM candidates, and a superposition of all of them. The samples spread out, so the model is clearly not deterministic.</figcaption>
+  <figcaption style="font-size: 15px; color: #666;">Flow-JEPA predictions decoded to pixels with a separately trained decoder, out to 25 frames. The model stays relatively accurate even 30 timesteps into the future.</figcaption>
 </figure>
 
 <h4>1.1 Predictor ablations</h4>
 
-<p>All runs: 20 epochs (263k steps), batch 128, about 16M parameters, seed 0. Metrics on held-out windows: latent MSE at the first and last predicted step, and the block's position error after decoding the predicted latent with a small probe. Lower is better everywhere.</p>
+<p>Once the sanity check confirmed the models were behaving roughly as reported, I ran ablations to find the effects of state history, training horizon length, and action conditioning on model accuracy, and whether one model benefits more from these factors than the other. Training recipe: 20 epochs (263k steps), batch 128, ~16M params, seed 0. Held-out metrics: latent MSE at the first and last predicted step, and block position error from a small probe on the predicted latent. Lower is better.</p>
 
-<p><strong>A. Architecture × action conditioning</strong> (horizon 5, current frame only)</p>
+<p><strong>A. Action conditioning</strong> (horizon H=5, no history)</p>
 <table style="display: block; overflow-x: auto;">
   <tr><th>Model</th><th>Actions</th><th>MSE step 1</th><th>MSE step 5</th><th>Block error step 5 (px)</th><th>Angle error step 5 (°)</th></tr>
   <tr><td>Flow-JEPA</td><td>yes</td><td><strong>0.010</strong></td><td><strong>0.058</strong></td><td><strong>4.7</strong></td><td><strong>1.8</strong></td></tr>
@@ -170,9 +168,9 @@ categories: [Ongoing]
 <text x="540" y="215.5" font-size="12" fill="#222">Dreamer, actions</text>
 <text x="540" y="273.3" font-size="12" fill="#222">Flow-JEPA, actions</text>
 </svg></figure>
-<p>Flow-JEPA wins at both conditioning levels, by about 4× with actions. It also gains more from actions: step-5 error drops 4.8× for Flow-JEPA and 2.2× for Dreamer.</p>
+<p>Flow-JEPA beats Dreamer in both settings.</p>
 
-<p><strong>H. Training horizon</strong> (current frame only)</p>
+<p><strong>H. Training horizon</strong> (no history)</p>
 <table style="display: block; overflow-x: auto;">
   <tr><th>Model</th><th>Actions</th><th>Horizon</th><th>MSE step 1</th><th>MSE last step</th><th>Block error last step (px)</th></tr>
   <tr><td>Flow-JEPA</td><td>yes</td><td>1</td><td><strong>0.007</strong></td><td>0.007</td><td>2.5</td></tr>
@@ -347,9 +345,9 @@ categories: [Ongoing]
 <text x="540" y="241.6" font-size="12" fill="#222">Dreamer, actions</text>
 <text x="540" y="277.9" font-size="12" fill="#222">Flow-JEPA, actions</text>
 </svg></figure>
-<p>Error grows roughly linearly with the step, and training on a longer horizon costs some first-step accuracy, mostly for Flow-JEPA (0.007 at H=1 vs 0.012 at H=8).</p>
+<p>Error grows roughly linearly with step, as expected, though the linear trend is optimistic. Longer training horizons cost some earlier-step accuracy.</p>
 
-<p><strong>B. History × past actions</strong> (action-conditioned, horizon 5)</p>
+<p><strong>B. History</strong> (action-conditioned, horizon 5)</p>
 <table style="display: block; overflow-x: auto;">
   <tr><th>History (frames)</th><th>Flow-JEPA</th><th>Flow-JEPA + past actions</th><th>Dreamer</th><th>Dreamer + past actions</th></tr>
   <tr><td>1</td><td>0.062</td><td>0.061</td><td>0.209</td><td>0.236</td></tr>
@@ -437,7 +435,7 @@ categories: [Ongoing]
 <text x="292" y="103.9" font-size="12" fill="#222">no past actions</text>
 <text x="292" y="124.9" font-size="12" fill="#222">+ past actions</text>
 </svg></div></div>
-<p>History helps Dreamer a lot (block error 9.8 → 6.1 px at 12 frames with past actions) and Flow-JEPA barely. Past actions help both, and history without them slightly hurts Flow-JEPA.</p>
+<p>History helps Dreamer significantly, Flow-JEPA barely. Past actions help both when included in the history. Classical theory suggests both models should benefit from history. My current hypothesis is that the environment is too simple for history to appreciably improve Flow-JEPA. I will probably repeat this ablation on OCBench and real-robot data.</p>
 
 <p><strong>Positional encoding</strong> (Flow-JEPA, 12 frames + past actions)</p>
 <table style="display: block; overflow-x: auto;">
@@ -445,25 +443,24 @@ categories: [Ongoing]
   <tr><td>RoPE over time</td><td>0.009</td><td><strong>0.057</strong></td><td><strong>4.2</strong></td></tr>
   <tr><td>None (NoPE)</td><td>0.010</td><td>0.062</td><td>4.4</td></tr>
 </table>
-<p>RoPE is slightly better, so it stays.</p>
+<p>RoPE performs better than NoPE (no positional embedding), as expected.</p>
 
 <h3>2. Environment: OCBench</h3>
 
-<p>With the predictors working on Push-T, I moved to a much harder 3D setting: <a href="https://arxiv.org/abs/2610.07056" target="_blank">OCBench</a> (<a href="https://github.com/seohongpark/ocbench" target="_blank">code</a>), a simulated robot-arm benchmark with cubes, a Tower of Hanoi, buttons, drawers and windows. I use four tasks (block-single, hanoi-single, block-double, chamber-easy task 2) with 1,000 episodes each, re-rendered so that there is an image every 5 control steps (10 Hz).</p>
+<p>A simulated manipulation benchmark was needed to bridge the implementation gap between Push-T and real-robot data. <a href="https://arxiv.org/abs/2610.07056" target="_blank">OCBench</a> (<a href="https://github.com/seohongpark/ocbench" target="_blank">code</a>) is a simulated 3D robot-arm benchmark with cubes, a Tower of Hanoi, buttons, drawers and windows. Training data: four tasks (block-single, hanoi-single, block-double, chamber-easy task 2), 1,000 episodes each, 10 Hz action rate.</p>
 
 <h4>2.1 Encoder</h4>
 
-<p>Push-T's LeWM encoder only knows Push-T, so OCBench needs a general-purpose image encoder.</p>
+<p>The LeWM encoder is Push-T-specific, so OCBench needs a general image encoder.</p>
 <ul>
-  <li><strong>Pooled DINOv2 did not work.</strong> My first setup (also used on a real cube-stacking robot) pooled frozen DINOv2-S patch tokens down to a 4×4 grid. That threw away too much detail for 3D manipulation: decoded frames lost gripper fingers, cube edges and sometimes small cubes.</li>
-  <li><strong>Now: frozen DINOv3, full patch grid.</strong> ViT-S on OCBench's front camera, plus a 7-d end-effector state (position, yaw, gripper opening, contact).</li>
-  <li><strong>No encoder of my own.</strong> I considered training one (MAE-style) but dropped it: the leading 3D-manipulation world models use frozen pretrained encoders, and LeWM's trained-from-scratch encoder degraded more under visual shift.</li>
-  <li><strong>No 3D object poses in the state.</strong> The model would receive them for free during rollouts, which makes prediction too easy.</li>
+  <li><strong>Pooled DINOv2 failed.</strong> Pooling frozen DINOv2-S patch tokens to a 4×4 grid (also used on the real robot) lost too much detail, as expected.</li>
+  <li><strong>Current: frozen DINOv3 ViT-S, full patch grid</strong>, front camera, plus 7-d end-effector state (position, yaw, gripper opening, contact).</li>
+  <li><strong>No custom encoder.</strong> Literature suggests custom-trained encoders match the performance of pretrained ones (and may beat them in certain scenarios), but they are out of scope for this project.</li>
 </ul>
 
 <h4>2.2 Decoder ablations</h4>
 
-<p>To see what the model predicts, a pixel decoder maps frozen DINOv3 tokens back to images. It follows the Dreamer 4 recipe: a deterministic transformer (12 blocks, width 768, about 115M parameters) trained with MSE + 0.2·LPIPS for 100k steps, with no gradient into the world model. The ablation asks whether telling the decoder which objects are where (class plus a 2D box or a segmentation mask, injected by cross-attention) sharpens the image. "No objects" evaluates the same decoder with the object tokens removed.</p>
+<p>A pixel decoder maps frozen DINOv3 tokens back to images, following Dreamer 4: deterministic transformer (12 blocks, width 768, ~115M params), MSE + 0.2·LPIPS, 100k steps. Ablations were mainly needed because naive decoders tend to lose track of the target object, conjuring it from thin air while it is in use. I compare different methods of semantic grounding.</p>
 
 <table style="display: block; overflow-x: auto;">
   <tr><th>Grounding</th><th>Eval</th><th>block-single</th><th>hanoi-single</th><th>block-double</th><th>chamber-easy</th><th>All (PSNR / LPIPS)</th></tr>
@@ -517,7 +514,7 @@ categories: [Ongoing]
 <text x="611.8" y="218.1" font-size="10.5" fill="#222" text-anchor="middle">0.04</text>
 <text x="599.8" y="258" font-size="12" fill="#666" text-anchor="middle">All</text>
 </svg></figure>
-<p>Grounding barely matters: +0.29 dB with boxes and +0.04 dB with masks. The DINOv3 tokens already carry the objects. Masks give slightly better LPIPS, boxes slightly better PSNR.</p>
+<p>Both box grounding and segmentation-mask grounding show significant improvement over no grounding at all. Although the images are still not sharp (likely due to the sparse data regime), the general shape is preserved and the target object does not disappear or glitch.</p>
 
 <div style="display: grid; gap: 18px; margin: 16px 0 30px;">
   <figure style="margin: 0;"><video src="{{ site.baseurl }}/images/wm/ocb_block-single-task1.mp4" autoplay loop muted playsinline style="width: 100%; height: auto;"></video><figcaption style="font-size: 14px; color: #666;">block-single</figcaption></figure>
@@ -525,19 +522,18 @@ categories: [Ongoing]
   <figure style="margin: 0;"><video src="{{ site.baseurl }}/images/wm/ocb_block-double-task1.mp4" autoplay loop muted playsinline style="width: 100%; height: auto;"></video><figcaption style="font-size: 14px; color: #666;">block-double</figcaption></figure>
   <figure style="margin: 0;"><video src="{{ site.baseurl }}/images/wm/ocb_chamber-easy-task2.mp4" autoplay loop muted playsinline style="width: 100%; height: auto;"></video><figcaption style="font-size: 14px; color: #666;">chamber-easy</figcaption></figure>
 </div>
-<p style="font-size: 15px; color: #666;">Held-out OCBench episodes. Left to right: ground truth, box-grounded decoder, mask-grounded decoder, each decoding the frozen DINOv3 tokens of the real frame.</p>
+<p style="font-size: 15px; color: #666;">Held-out OCBench episodes. Left to right: ground truth, box-grounded decoder, mask-grounded decoder.</p>
 
 <h4>2.3 Predictor ablations <span style="font-size: 14px; font-weight: normal; color: #fff; background: #4CAF50; border-radius: 50px; padding: 2px 10px;">WIP</span></h4>
 
-<p>Next: Flow-JEPA vs Dreamer on OCBench's DINOv3 tokens, action-conditioned, current frame only, horizon 8, followed by a history × horizon sweep on the unconditioned models. Smoke tests are running.</p>
+<p>Next: Flow-JEPA vs Dreamer on OCBench DINOv3 tokens (action-conditioned, current frame only, horizon 8), then a history × horizon sweep without actions. Models are training.</p>
 
 <h3>3. Real robot data <span style="font-size: 14px; font-weight: normal; color: #fff; background: #4CAF50; border-radius: 50px; padding: 2px 10px; vertical-align: middle;">WIP</span></h3>
 
-<p>The end goal is a world model of a real robot. A first proof of concept, a Flow-JEPA predictor on pooled DINOv2 tokens and 25 joint positions of a two-arm robot stacking cubes, kept joint error near 1° up to 2 s ahead, but its images were too coarse (see 2.1). The current work trains the OCBench setup on four real-robot datasets recorded in the same environment.</p>
 
 <h4>3.1 Decoder</h4>
 
-<p>The OCBench decoder recipe, trained on real data: one decoder for all four datasets, frozen DINOv3-L tokens from the head camera, and object classes only (no boxes; detector boxes on cluttered real scenes are unreliable). I also tried giving the decoder a reference frame (the previous frame, 8 frames back, or the episode's first frame).</p>
+<p>OCBench decoder recipe on real data: one decoder for all four datasets, frozen DINOv3-L head-camera tokens, object classes only (detector boxes are unreliable in cluttered real scenes). Also tested adding a reference frame (t−1, t−8, or the episode's first frame), borrowed from <a href="https://arxiv.org/abs/2605.15196" target="_blank">arXiv:2605.15196</a>.</p>
 <table style="display: block; overflow-x: auto;">
   <tr><th>Decoder</th><th>PSNR</th><th>LPIPS</th><th>No objects (PSNR)</th><th>Wrong reference (PSNR)</th></tr>
   <tr><td>Classes only</td><td><strong>31.87</strong></td><td><strong>0.0390</strong></td><td>31.83</td><td></td></tr>
@@ -545,7 +541,7 @@ categories: [Ongoing]
   <tr><td>+ reference t−8</td><td>31.71</td><td>0.0420</td><td>31.71</td><td>31.71</td></tr>
   <tr><td>+ first frame</td><td>31.70</td><td>0.0418</td><td>31.71</td><td>31.70</td></tr>
 </table>
-<p>The reference frame is ignored: a <em>wrong</em> reference scores exactly the same, and all three variants are slightly worse than no reference.</p>
+<p>The reference frame is essentially ignored. I will likely continue with either box or mask grounding.</p>
 
 <div style="display: grid; gap: 18px; margin: 16px 0 10px;">
   <figure style="margin: 0;"><video src="{{ site.baseurl }}/images/wm/real_icl_demo_ep0.mp4" autoplay loop muted playsinline style="width: 100%; height: auto;"></video><figcaption style="font-size: 14px; color: #666;">Stack three cubes into a tower</figcaption></figure>
@@ -557,7 +553,7 @@ categories: [Ongoing]
 
 <h4>3.2 Next</h4>
 <ul>
-  <li>Mask grounding from SAM 3 instead of class labels, on one dataset first.</li>
-  <li>Action-conditioned Flow-JEPA and Dreamer predictors on the real data, with the same settings as OCBench.</li>
-  <li>Multiple cameras (head plus both wrists): separate per-view streams with cross-view attention vs all views' tokens in one sequence.</li>
+  <li>SAM 3 mask grounding instead of class labels, one dataset first.</li>
+  <li>Action-conditioned Flow-JEPA and Dreamer predictors on real data, OCBench settings.</li>
+  <li>Multi-camera (head + both wrists): per-view streams with cross-view attention vs one joint token sequence.</li>
 </ul>
