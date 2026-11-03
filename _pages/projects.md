@@ -24,6 +24,20 @@ permalink: /projects/
 
 <div style="margin-bottom: 40px; clear: both; overflow: hidden;">
 
+  <video src="{{ site.baseurl }}/images/wm/thumb_world_models.mp4" alt="Towards World Models" autoplay loop muted playsinline style="width: 250px; height: 250px; object-fit: cover; border-radius: 8px; float: left; margin-right: 20px; margin-bottom: 10px; border: 1px solid #eaeaea;"></video>
+
+  <h3 style="margin-top: 0; display: flex; align-items: center;">
+    <a href="{{ site.baseurl }}{% post_url 2026-11-03-towards-world-models %}">Towards World Models</a>
+    <span style="margin-left: 10px; font-size: 13px; font-weight: normal; color: #fff; background: #4CAF50; border-radius: 50px; padding: 2px 10px;">Ongoing</span>
+  </h3>
+
+  <p>Experimenting with recipes for distributional latent world models, comparing a Flow-JEPA style flow-matching predictor with a Dreamer 4 style transformer. Ablations on Push-T, then OCBench and real robot data with frozen DINOv3 encoders. <a href="{{ site.baseurl }}{% post_url 2026-11-03-towards-world-models %}">Read the log</a></p>
+</div>
+
+<hr style="border: 0; border-top: 1px solid #eaeaea; margin: 30px 0;">
+
+<div style="margin-bottom: 40px; clear: both; overflow: hidden;">
+
   <video src="{{ site.baseurl }}/images/RL_gait.mp4" alt="Unitree Go2 Locomotion" autoplay loop muted playsinline style="width: 250px; height: 250px; object-fit: cover; border-radius: 8px; float: left; margin-right: 20px; margin-bottom: 10px; border: 1px solid #eaeaea;"></video>
   
   <h3 style="margin-top: 0; display: flex; align-items: center;">
