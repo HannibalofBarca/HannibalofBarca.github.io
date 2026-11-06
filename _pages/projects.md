@@ -37,7 +37,7 @@ permalink: /projects/
 <hr style="border: 0; border-top: 1px solid #eaeaea; margin: 30px 0;">
 
 <div style="margin-bottom: 40px; clear: both; overflow: hidden;">
-  <img src="{{ site.baseurl }}/images/manual_annotation.png" alt="Manual Annotation Platform" style="width: 250px; height: 250px; object-fit: cover; object-position: 0% 50%; border-radius: 8px; float: left; margin-right: 20px; margin-bottom: 10px; border: 1px solid #eaeaea;" />
+  <img src="{{ site.baseurl }}/images/manual_annotation.png" alt="Manual Annotation Platform" style="width: 250px; height: 250px; object-fit: cover; border-radius: 8px; float: left; margin-right: 20px; margin-bottom: 10px; border: 1px solid #eaeaea;" />
 
   <h3 style="margin-top: 0; display: flex; align-items: center;">
     Manual Annotation Platform
@@ -46,7 +46,7 @@ permalink: /projects/
     </a>
   </h3>
 
-  <p>A self-hosted, browser-based tool for dense, multi-annotator labeling of robot teleoperation episodes stored in LeRobot format on Hugging Face. Annotators scrub through synced multi-camera video and place key events (a subtask name and a 0-1 progress value), which are turned into a smooth progress curve over time. Incorrect success/fail labels can be overridden without modifying the source dataset. The resulting human progress annotations serve as ground truth for evaluating robot reward models.</p>
+  <p>Browser-based tool for dense labeling of robot teleoperation episodes using LeRobot Streaming. Annotators can scrub through YAM-style multi-camera video and place key events (subtask names and a 0-1 progress value). Incorrect success/fail labels can be corrected in GUI.</p>
 </div>
 
 <hr style="border: 0; border-top: 1px solid #eaeaea; margin: 30px 0;">
