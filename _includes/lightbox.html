@@ -1,0 +1,124 @@
+<!-- Click any figure (image or video) in the page content to view it full size.
+     Opt an element out with class="no-zoom". -->
+<style>
+  .zoomable { cursor: zoom-in; }
+  .lb-overlay {
+    position: fixed; inset: 0; z-index: 10000;
+    display: flex; flex-direction: column; align-items: center; justify-content: center;
+    padding: 24px; box-sizing: border-box;
+    background: rgba(0, 0, 0, 0.85);
+    opacity: 0; transition: opacity 0.15s ease;
+    cursor: zoom-out;
+  }
+  .lb-overlay.lb-open { opacity: 1; }
+  .lb-overlay img, .lb-overlay video {
+    max-width: 100%; max-height: calc(100vh - 96px);
+    width: auto; height: auto; object-fit: contain;
+    border-radius: 6px; background: #fff;
+    box-shadow: 0 8px 40px rgba(0, 0, 0, 0.5);
+    cursor: default;
+  }
+  .lb-caption {
+    margin-top: 12px; max-width: 900px;
+    color: #eee; font-size: 14px; text-align: center; line-height: 1.4;
+  }
+  .lb-close {
+    position: absolute; top: 12px; right: 16px;
+    width: 40px; height: 40px; border: none; border-radius: 50%;
+    background: rgba(255, 255, 255, 0.15); color: #fff;
+    font-size: 26px; line-height: 40px; cursor: pointer;
+  }
+  .lb-close:hover, .lb-close:focus-visible { background: rgba(255, 255, 255, 0.3); }
+  body.lb-locked { overflow: hidden; }
+</style>
+<script>
+(function () {
+  var MIN_SIZE = 48; // skip icons and logos
+
+  function eligible(el) {
+    if (!el || !el.closest("#main")) return false;
+    if (el.closest(".no-zoom, a, button, .lb-overlay")) return false;
+    if (el.classList.contains("no-zoom") || el.classList.contains("rm-video")) return false;
+    if (el.tagName === "VIDEO" && el.hasAttribute("controls")) return false;
+    var r = el.getBoundingClientRect();
+    if (r.width && r.width < MIN_SIZE && r.height < MIN_SIZE) return false;
+    return true;
+  }
+
+  function mark() {
+    document.querySelectorAll("#main img, #main video").forEach(function (el) {
+      if (eligible(el)) el.classList.add("zoomable");
+    });
+  }
+
+  var overlay = null, lastFocus = null;
+
+  function close() {
+    if (!overlay) return;
+    var o = overlay; overlay = null;
+    o.classList.remove("lb-open");
+    document.body.classList.remove("lb-locked");
+    setTimeout(function () { o.remove(); }, 150);
+    if (lastFocus) lastFocus.focus();
+  }
+
+  function open(el) {
+    lastFocus = document.activeElement;
+    overlay = document.createElement("div");
+    overlay.className = "lb-overlay";
+    overlay.setAttribute("role", "dialog");
+    overlay.setAttribute("aria-modal", "true");
+
+    var media;
+    if (el.tagName === "VIDEO") {
+      media = document.createElement("video");
+      media.src = el.currentSrc || el.src;
+      media.autoplay = true; media.loop = true; media.muted = true;
+      media.playsInline = true; media.controls = true;
+      try { media.currentTime = el.currentTime || 0; } catch (e) {}
+    } else {
+      media = document.createElement("img");
+      media.src = el.currentSrc || el.src;
+      media.alt = el.alt || "";
+    }
+    var label = el.getAttribute("alt") || "";
+    if (label) overlay.setAttribute("aria-label", label);
+
+    var btn = document.createElement("button");
+    btn.className = "lb-close";
+    btn.type = "button";
+    btn.setAttribute("aria-label", "Close");
+    btn.innerHTML = "&times;";
+    btn.addEventListener("click", close);
+
+    overlay.appendChild(btn);
+    overlay.appendChild(media);
+    if (label) {
+      var cap = document.createElement("div");
+      cap.className = "lb-caption";
+      cap.textContent = label;
+      overlay.appendChild(cap);
+    }
+    overlay.addEventListener("click", function (e) { if (e.target === overlay) close(); });
+
+    document.body.appendChild(overlay);
+    document.body.classList.add("lb-locked");
+    requestAnimationFrame(function () { overlay && overlay.classList.add("lb-open"); });
+    btn.focus();
+  }
+
+  document.addEventListener("click", function (e) {
+    var el = e.target.closest && e.target.closest("img, video");
+    if (!el || !el.classList.contains("zoomable")) return;
+    e.preventDefault();
+    open(el);
+  });
+  document.addEventListener("keydown", function (e) {
+    if (e.key === "Escape") close();
+  });
+
+  if (document.readyState === "loading") document.addEventListener("DOMContentLoaded", mark);
+  else mark();
+  window.addEventListener("load", mark);
+})();
+</script>

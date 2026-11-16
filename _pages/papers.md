@@ -6,7 +6,7 @@ permalink: /papers/
 
 <div style="margin-bottom: 40px; clear: both; overflow: hidden;">
   
-  <img src="{{ site.baseurl }}/images/victr_pull.jpg" alt="VICTR overview figure" style="width: 250px; height: 250px; object-fit: cover; object-position: center; border-radius: 8px; float: left; margin-right: 20px; margin-bottom: 10px; border: 1px solid #eaeaea;" />
+  <img src="{{ site.baseurl }}/images/victr_pull.jpg" alt="VICTR overview figure" style="width: 250px; height: 250px; object-fit: cover; object-position: top center; border-radius: 8px; float: left; margin-right: 20px; margin-bottom: 10px; border: 1px solid #eaeaea;" />
   
   <h3 style="margin-top: 0;">
     <a href="https://ai4ce.github.io/VICTR/" target="_blank" rel="noopener">VICTR: Value-Informed In-Context Learning for Vision-Language-Action Models</a>
@@ -20,7 +20,7 @@ permalink: /papers/
 
 <div style="margin-bottom: 40px; clear: both; overflow: hidden;">
   
-  <img src="{{ site.baseurl }}/images/active_suspension_controller.png" alt="Adaptive neural network controller design" style="width: 250px; height: 250px; object-fit: contain; border-radius: 8px; float: left; margin-right: 20px; margin-bottom: 10px; border: 1px solid #eaeaea; background: #ffffff;" />
+  <img src="{{ site.baseurl }}/images/active_suspension_controller.png" alt="Adaptive neural network controller design" style="width: 250px; height: 250px; object-fit: contain; padding: 8px; box-sizing: border-box; border-radius: 8px; float: left; margin-right: 20px; margin-bottom: 10px; border: 1px solid #eaeaea; background: #ffffff;" />
   
   <h3 style="margin-top: 0;">
     <a href="https://www.scopus.com/pages/publications/85205373737?origin=resultslist&amp;source=sd-apx" target="_blank" rel="noopener">Neural Network-Based Control for Vehicle Suspension Systems with Active Damping</a>
