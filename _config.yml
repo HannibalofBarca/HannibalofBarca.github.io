@@ -99,4 +99,7 @@ exclude:
   - LICENSE
   - README.md
   - CNAME
+  - vendor
+  - .bundle
+  - serve.ps1
 
