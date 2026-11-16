@@ -13,8 +13,7 @@ permalink: /papers/
   </h3>
   
   <p style="color: #586069; margin-top: -5px;">
-    Luca Macesanu<sup>&ast;</sup>, Tianluo Zhang<sup>&ast;</sup>, Aditya Patil, <strong>Archit Sharma</strong>, Kevin Angers, Christopher M. Clark, Chen Feng, and Juexiao Zhang<br>
-    <em>arXiv preprint arXiv:2611.08698</em>, 2026
+    Luca Macesanu<sup>&ast;</sup>, Tianluo Zhang<sup>&ast;</sup>, Aditya Patil, <strong>Archit Sharma</strong>, Kevin Angers, Christopher M. Clark, Chen Feng, and Juexiao Zhang
   </p>
   
 </div>
