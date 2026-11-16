@@ -37,6 +37,19 @@ permalink: /projects/
 <hr style="border: 0; border-top: 1px solid #eaeaea; margin: 30px 0;">
 
 <div style="margin-bottom: 40px; clear: both; overflow: hidden;">
+
+  <video src="{{ site.baseurl }}/images/rm/rm_circle_on_peg.mp4" alt="About Reward Models and Value Functions" autoplay loop muted playsinline style="width: 250px; height: 250px; object-fit: cover; border-radius: 8px; float: left; margin-right: 20px; margin-bottom: 10px; border: 1px solid #eaeaea;"></video>
+
+  <h3 style="margin-top: 0; display: flex; align-items: center;">
+    <a href="{{ site.baseurl }}{% post_url 2026-11-06-reward-model-exploration %}">About Reward Models and Value Functions</a>
+  </h3>
+
+  <p>Reward models as progress estimators: offline and online models compared on bimanual robot demonstrations.</p>
+</div>
+
+<hr style="border: 0; border-top: 1px solid #eaeaea; margin: 30px 0;">
+
+<div style="margin-bottom: 40px; clear: both; overflow: hidden;">
   <img src="{{ site.baseurl }}/images/manual_annotation.png" alt="Manual Annotation Platform" style="width: 250px; height: 250px; object-fit: cover; border-radius: 8px; float: left; margin-right: 20px; margin-bottom: 10px; border: 1px solid #eaeaea;" />
 
   <h3 style="margin-top: 0; display: flex; align-items: center;">
