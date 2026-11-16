@@ -8,8 +8,11 @@ layout: default
   
   <h2 style="margin-top: 0;">About Me</h2>
   <p style="margin-bottom: 0; line-height: 1.6;">
-    I am a graduate student at New York University, pursuing a Master's degree in Mechatronics and Robotics. My primary research interests are control systems and reinforcement learning, focusing on their applications in robust locomotion and manipulation, as well as integrating these policies with visual perception systems to map and efficiently traverse complex environments. I wish to develop systems capable of safely exploring and surveying natural environments. 
-    I am aware of the ethical implications of work in this field and believe in ensuring that this research is used responsibly.
+    I am a Researcher in the Center for Robotics and Embodied Intelligence at New York University. I hold an MS in Mechatronics and Robotics from NYU and a BS in Mechanical Engineering from BITS Pilani.
+    <br><br>
+    My research centers on reinforcement learning and planning, especially for VLA models, and I am currently exploring world models as a foundation for more capable, generalizable robot policies.
+    <br><br>
+    My goal is to build robotic systems that can autonomously explore and map unstructured, real-world environments, and that work alongside people to make hazardous or demanding tasks safer and more efficient. I am committed to making sure this technology is developed and deployed responsibly, with careful attention to its ethical and societal impact.
     <br><br>
     <a href="mailto:as20424@nyu.edu" style="margin-right: 15px; text-decoration: none; color: #0366d6; font-weight: bold;">Contact Me through Email</a>
   </p>
@@ -37,6 +40,22 @@ layout: default
 <h2 style="border-bottom: 1px solid #eaeaea; padding-bottom: 10px; margin-bottom: 30px;">Featured Projects</h2>
 
 <div style="margin-bottom: 40px; display: flex; align-items: center;">
+  <img src="{{ site.baseurl }}/images/victr_pull.jpg" alt="VICTR overview figure" style="width: 150px; height: 150px; object-fit: cover; object-position: top center; border-radius: 8px; margin-right: 20px; border: 1px solid #eaeaea; flex-shrink: 0;" />
+
+  <h3 style="margin: 0; display: flex; align-items: center;">
+    <a href="https://ai4ce.github.io/VICTR/" target="_blank" rel="noopener">VICTR: Value-Informed In-Context Learning for VLA Models</a>
+  </h3>
+</div>
+
+<div style="margin-bottom: 40px; display: flex; align-items: center;">
+  <video src="{{ site.baseurl }}/images/wm/thumb_world_models.mp4" autoplay loop muted playsinline style="width: 150px; height: 150px; object-fit: cover; border-radius: 8px; margin-right: 20px; border: 1px solid #eaeaea; flex-shrink: 0;"></video>
+
+  <h3 style="margin: 0; display: flex; align-items: center;">
+    <a href="{{ site.baseurl }}{% post_url 2026-11-03-towards-world-models %}">Towards World Models</a>
+  </h3>
+</div>
+
+<div style="margin-bottom: 40px; display: flex; align-items: center;">
   <video src="{{ site.baseurl }}/images/RL_gait.mp4" autoplay loop muted playsinline style="width: 150px; height: 150px; object-fit: cover; object-position: 20% 50%; border-radius: 8px; margin-right: 20px; border: 1px solid #eaeaea; flex-shrink: 0;"></video>
   
   <h3 style="margin: 0; display: flex; align-items: center;">
@@ -45,39 +64,6 @@ layout: default
       <img src="{{ site.baseurl }}/images/GitHub_Invertocat_Black.svg" alt="GitHub Logo" style="width: 24px; height: 24px; border: none; box-shadow: none;" />
     </a>
   </h3>  
-</div>
-
-<div style="margin-bottom: 40px; display: flex; align-items: center;">
-  <video src="{{ site.baseurl }}/images/hexapod.mp4" autoplay loop muted playsinline style="width: 150px; height: 150px; object-fit: cover; object-position: 20% 50%; border-radius: 8px; margin-right: 20px; border: 1px solid #eaeaea; flex-shrink: 0;"></video>
-
-  <h3 style="margin: 0; display: flex; align-items: center;">
-    Gesture-Controlled Hexapod
-    <a href="https://github.com/HannibalofBarca/Hexapod" target="_blank" title="View on GitHub" style="margin-left: 10px; display: inline-flex; transition: opacity 0.2s;">
-      <img src="{{ site.baseurl }}/images/GitHub_Invertocat_Black.svg" alt="GitHub Logo" style="width: 24px; height: 24px; border: none; box-shadow: none;" />
-    </a>
-  </h3>
-</div>
-
-<div style="margin-bottom: 40px; display: flex; align-items: center;">
-  <img src="{{ site.baseurl }}/images/vpr_retrieval.png" alt="VPR Image Retrieval" style="width: 150px; height: 150px; object-fit: cover; border-radius: 8px; margin-right: 20px; border: 1px solid #eaeaea; flex-shrink: 0;" />
-
-  <h3 style="margin: 0; display: flex; align-items: center;">
-    Content-Based Image Retrieval for VPR
-    <a href="https://github.com/HannibalofBarca/Visual-Place-Recognition-Image-Retrieval" target="_blank" title="View on GitHub" style="margin-left: 10px; display: inline-flex; transition: opacity 0.2s;">
-      <img src="{{ site.baseurl }}/images/GitHub_Invertocat_Black.svg" alt="GitHub Logo" style="width: 24px; height: 24px; border: none; box-shadow: none;" />
-    </a>
-  </h3>
-</div>
-
-<div style="margin-bottom: 40px; display: flex; align-items: center;">
-  <video src="{{ site.baseurl }}/images/quadrotor.mp4" autoplay loop muted playsinline style="width: 150px; height: 150px; object-fit: cover; border-radius: 8px; margin-right: 20px; border: 1px solid #eaeaea; flex-shrink: 0;"></video>
-  
-  <h3 style="margin: 0; display: flex; align-items: center;">
-    2D Quadrotor MPC Controller
-    <a href="https://github.com/HannibalofBarca/2D-Quadrotor-MPC" target="_blank" title="View on GitHub" style="margin-left: 10px; display: inline-flex; transition: opacity 0.2s;">
-      <img src="{{ site.baseurl }}/images/GitHub_Invertocat_Black.svg" alt="GitHub Logo" style="width: 24px; height: 24px; border: none; box-shadow: none;" />
-    </a>
-  </h3>
 </div>
 
 <div style="text-align: right; margin-top: 20px; margin-bottom: 50px;">
